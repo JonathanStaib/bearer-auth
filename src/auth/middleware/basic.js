@@ -5,7 +5,7 @@ const { users } = require('../models/index.js');
 
 module.exports = async (req, res, next) => {
 
-  if (!req.headers.authorization) { return 'authError'; }
+  if (!req.headers.authorization) { next('No Basic Auth Header'); }
 
   let { authorization } = req.headers;
   let authString = authorization.split(' ')[1];
@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
   let [username, password] = decodedAuthStr.split(':');
 
   try {
-    req.user = await users.authenticateBasic({where: {username, password}});
+    req.user = await users.authenticateBasic(username, password);
     next();
   } catch (e) {
     console.error(e);

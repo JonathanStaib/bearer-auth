@@ -15,19 +15,6 @@ async function handleSignup(req, res, next) {
     console.error(e);
     next(e);
   }
-
-  //   try {
-  //     const { username, password } = req.body;
-  //     // const encryptedPassword = await bcrypt.hash(password, 5);
-
-  //     let newUser = await users.create({
-  //       username, 
-  //       password,
-  //     });
-  //     res.status(201).json(newUser);
-  //   } catch (e){
-  //     next('signup error occurred');
-  //   }
 }
 
 async function handleSignin(req, res, next) {
